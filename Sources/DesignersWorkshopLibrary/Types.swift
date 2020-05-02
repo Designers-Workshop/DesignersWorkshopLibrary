@@ -1,7 +1,6 @@
 import Foundation
 import PostgresClientKit
 
-// MARK: - Global Structs.
 /// This struct represents the user that is current logged in.
 public struct User {
 	public let id: Int
@@ -15,15 +14,51 @@ public struct User {
 	public let isAdmin: Bool
 	public let profilePic: PostgresByteA
 	public var forgotPasswordID: String?
+	
+	public init(id: Int,
+				name: String,
+				email: String,
+				address: String,
+				username: String,
+				password: String,
+				dateTimeCreated: PostgresTimestampWithTimeZone,
+				zone: String,
+				isAdmin: Bool,
+				profilePic: PostgresByteA,
+				forgotPasswordID: String?) {
+		self.id = id
+		self.name = name
+		self.email = email
+		self.address = address
+		self.username = username
+		self.password = password
+		self.dateTimeCreated = dateTimeCreated
+		self.zone = zone
+		self.isAdmin = isAdmin
+		self.profilePic = profilePic
+		self.forgotPasswordID = forgotPasswordID
+	}
 }
 
-/// This struct represents a single order by the user.
+/// This struct represents a single order by a user.
 public struct Order {
 	public let id: Int
 	public let user: User
 	public var productList: [Product]
 	public let orderDateTime: PostgresTimestampWithTimeZone
 	public let zone: String
+	
+	public init(id: Int,
+				user: User,
+				productList: [Product],
+				orderDateTime: PostgresTimestampWithTimeZone,
+				zone: String) {
+		self.id = id
+		self.user = user
+		self.productList = productList
+		self.orderDateTime = orderDateTime
+		self.zone = zone
+	}
 }
 
 /// This struct represents a product in an order.
@@ -43,11 +78,32 @@ public struct Page: Codable, Hashable {
 	public let image: Data?
 	public let dropdown: Dropdown
 	public let type: String
+	
+	public init(id: Int,
+				title: String,
+				linkTitle: String,
+				contents: String?,
+				image: Data?,
+				dropdown: Dropdown,
+				type: String) {
+		self.id = id
+		self.title = title
+		self.linkTitle = linkTitle
+		self.contents = contents
+		self.image = image
+		self.dropdown = dropdown
+		self.type = type
+	}
 }
 
 public struct Dropdown: Codable, Hashable {
 	public let id: Int
 	public let name: String
+	
+	public init(id: Int, name: String) {
+		self.id = id
+		self.name = name
+	}
 }
 
 /// This struct represents a sketch uploaded by a user.
@@ -58,4 +114,18 @@ public struct Sketch {
 	public let image: Data
 	public let dateTimeSubmitted: PostgresTimestampWithTimeZone
 	public let zone: String
+	
+	public init(id: Int,
+				user: User,
+				name: String,
+				image: Data,
+				dateTimeSubmitted: PostgresTimestampWithTimeZone,
+				zone: String) {
+		self.id = id
+		self.user = user
+		self.name = name
+		self.image = image
+		self.dateTimeSubmitted = dateTimeSubmitted
+		self.zone = zone
+	}
 }
