@@ -63,7 +63,7 @@ public class Misc {
 				data = try Data(contentsOf: file)
 			#endif
 			
-			let json = JSON(data: data)
+			let json = try JSON(data: data)
 			
 			result = (json["DB_URL"].string!, json["EMAIL_PASSWORD"].string!, json["SALT"].string!, json["LOCATION"].string!, json["SITE"].string!, json["EMAIL"].string!)
 		}
