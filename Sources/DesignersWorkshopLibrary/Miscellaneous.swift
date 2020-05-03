@@ -97,9 +97,7 @@ public class Misc {
 		// Vapor is used on the Designers Workshop's web server...
 		#if canImport(Vapor)
 		let a = SHA256.hash(data: saltFormatted).hexEncodedString()
-		
 		let b = SHA256.hash(data: usernameFormatted).hexEncodedString()
-		
 		let c = SHA256.hash(data: plainText).hexEncodedString()
 		
 		let password = a + b + c
@@ -111,8 +109,8 @@ public class Misc {
 		// ...while CryptoSwift is used on Designers Workshop's iOS app.
 		#elseif canImport(CryptoSwift)
 		let a = saltFormatted.sha256().toHexString()
-		let b = plainText.sha256().toHexString()
-		let c = usernameFormatted.sha256().toHexString()
+		let b = usernameFormatted.sha256().toHexString()
+		let c = plainText.sha256().toHexString()
 		
 		let password = a + b + c
 		
