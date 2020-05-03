@@ -40,7 +40,7 @@ public struct UDBF {
 			
 			let connection = try PostgresClientKit.Connection(configuration: config)
 			
-			var statement = try connection.prepareStatement(text: "INSERT INTO users(name, email, address, username, password, date_time_created, is_admin, profile_pic, zone) VALUES($1, $2, $3, $4, $5, $6, $7, FALSE, $8);")
+			var statement = try connection.prepareStatement(text: "INSERT INTO users(name, email, address, username, password, date_time_created, is_admin, profile_pic, zone) VALUES($1, $2, $3, $4, $5, $6, FALSE, $7, $8);")
 			
 			try statement.execute(parameterValues: [name, email, address, username, password, dateTimeCreated, PostgresByteA(data: profilePic), zone])
 			
