@@ -84,11 +84,9 @@ public class Misc {
 		
 		var gsalt = salt
 		
-		#if canImport(Vapor)
 		if salt.isEmpty {
 			gsalt = getEnvs()!.salt
 		}
-		#endif
 		
 		let saltFormatted = gsalt.data(using: .utf8)!
 		
