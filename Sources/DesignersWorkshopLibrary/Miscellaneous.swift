@@ -49,12 +49,19 @@ public class Misc {
 	
 	public var config = PostgresClientKit.ConnectionConfiguration()
 	
-	public func getEnvs() -> (dbURL: String, emailPassword: String, salt: String, location: String, site: String, email: String)? {
+	public func getEnvs(fromFile file: URL = URL(fileURLWithPath: "../envs.json")) -> (dbURL: String, emailPassword: String, salt: String, location: String, site: String, email: String)? {
 		
 		var result: (dbURL: String, emailPassword: String, salt: String, location: String, site: String, email: String)? = nil
 		
 		do {
-			let data = try Data(contentsOf: URL(fileURLWithPath: "../envs.json"))
+			
+			var data = Data()
+			
+			#if os(iOS)
+				data = try Data(contentsOf: Bundle.main.url(forResource: "envs", withExtension: "json")!)
+			#else
+				data = try Data(contentsOf: file)
+			#endif
 			
 			let json = JSON(data: data)
 			
