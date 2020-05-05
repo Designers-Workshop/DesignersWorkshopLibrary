@@ -41,7 +41,16 @@ public struct User {
 }
 
 /// This struct represents a single order by a user.
-public struct Order {
+public struct Order: Hashable {
+	
+	public static func == (lhs: Order, rhs: Order) -> Bool {
+		lhs.id == rhs.id
+	}
+	
+	public func hash(into hasher: inout Hasher) {
+		hasher.combine(id)
+	}
+	
 	public let id: Int
 	public let user: User
 	public var productList: [Product]
@@ -62,7 +71,7 @@ public struct Order {
 }
 
 /// This struct represents a product in an order.
-public struct Product: Codable {
+public struct Product: Codable, Hashable {
 	public let id: Int
 	public let name: String
 	public let price: Double
@@ -107,7 +116,15 @@ public struct Dropdown: Codable, Hashable {
 }
 
 /// This struct represents a sketch uploaded by a user.
-public struct Sketch {
+public struct Sketch: Hashable {
+	public static func == (lhs: Sketch, rhs: Sketch) -> Bool {
+		lhs.id == rhs.id
+	}
+	
+	public func hash(into hasher: inout Hasher) {
+		hasher.combine(id)
+	}
+	
 	public let id: Int
 	public let user: User
 	public let name: String
