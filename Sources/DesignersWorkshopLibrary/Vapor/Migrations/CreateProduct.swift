@@ -22,5 +22,7 @@ public struct CreateProduct: Migration {
 	public func revert(on database: Database) -> EventLoopFuture<Void> {
 		database.schema("products").delete()
 	}
+	
+	public init() {}
 }
 #endif

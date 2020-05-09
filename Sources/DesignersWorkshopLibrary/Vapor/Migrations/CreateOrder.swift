@@ -22,5 +22,7 @@ public struct CreateOrder: Migration {
 	public func revert(on database: Database) -> EventLoopFuture<Void> {
 		database.schema("orders").delete()
 	}
+	
+	public init() {}
 }
 #endif

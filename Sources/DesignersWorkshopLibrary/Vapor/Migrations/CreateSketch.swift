@@ -24,5 +24,7 @@ public struct CreateSketch: Migration {
 	public func revert(on database: Database) -> EventLoopFuture<Void> {
 		database.schema("sketches").delete()
 	}
+	
+	public init() {}
 }
 #endif
