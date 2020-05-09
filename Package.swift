@@ -16,8 +16,7 @@ let package = Package(
     ],
     dependencies: [
         // Dependencies declare other packages that this package depends on.
-		// PostgresClientKit.
-		.package(url: "https://github.com/codewinsdotcom/PostgresClientKit", .upToNextMinor(from: "1.1.1")),
+		
 		
 		.package(url: "https://github.com/krzyzanowskim/CryptoSwift.git", from: "1.3.1"),
     ],
@@ -26,7 +25,7 @@ let package = Package(
         // Targets can depend on other targets in this package, and on products in packages which this package depends on.
         .target(
             name: "DesignersWorkshopLibrary",
-            dependencies: ["PostgresClientKit", "CryptoSwift"]),
+            dependencies: ["CryptoSwift"]),
         .testTarget(
             name: "DesignersWorkshopLibraryTests",
             dependencies: ["DesignersWorkshopLibrary"]),
@@ -39,4 +38,9 @@ package.targets[0].dependencies.append("SwiftyJSON")
 #else
 package.dependencies.append(.package(url: "https://github.com/SwiftyJSON/SwiftyJSON.git", from: "5.0.0"))
 package.targets[0].dependencies.append("SwiftyJSON")
+#endif
+
+#if !canImport(Vapor) && !canImport(Fluent)
+package.dependencies.append(.package(url: "https://github.com/codewinsdotcom/PostgresClientKit", .upToNextMinor(from: "1.1.1")))
+package.targets[0].dependencies.append("PostgresClientKit")
 #endif
