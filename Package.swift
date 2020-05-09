@@ -40,7 +40,7 @@ package.dependencies.append(.package(url: "https://github.com/SwiftyJSON/SwiftyJ
 package.targets[0].dependencies.append("SwiftyJSON")
 #endif
 
-#if !canImport(Vapor) && !canImport(Fluent)
+#if !canImport(Vapor) && !canImport(Fluent) && os(iOS)
 package.dependencies.append(.package(url: "https://github.com/codewinsdotcom/PostgresClientKit", .upToNextMinor(from: "1.1.1")))
 package.targets[0].dependencies.append("PostgresClientKit")
 #endif
