@@ -6,13 +6,10 @@
 //
 
 import Foundation
-#if canImport(Vapor)
-import Vapor
-#else
-import PostgresClientKit
-#endif
 
 #if canImport(PostgresClientKit)
+import PostgresClientKit
+
 /// This class contains functions for accessing user information in a database.
 public struct UDBF {
 	public static var main = UDBF()
