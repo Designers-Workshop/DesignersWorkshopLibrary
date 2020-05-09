@@ -47,7 +47,9 @@ public class Misc {
 	
 	private init() {}
 	
+	#if canImport(PostgresClientKit)
 	public var config = PostgresClientKit.ConnectionConfiguration()
+	#endif
 	
 	public func getEnvs(fromFile file: URL = URL(fileURLWithPath: "../envs.json")) -> (dbURL: String, emailPassword: String, salt: String, location: String, site: String, email: String)? {
 		
@@ -107,7 +109,7 @@ public class Misc {
 		return final
 		
 		// ...while CryptoSwift is used on Designers Workshop's iOS app.
-		#elseif canImport(CryptoSwift)
+		#elseif canImport(CryptoSwift) && canImport(PostgresClientKit)
 		let a = saltFormatted.sha256().toHexString()
 		let b = usernameFormatted.sha256().toHexString()
 		let c = plainText.sha256().toHexString()
