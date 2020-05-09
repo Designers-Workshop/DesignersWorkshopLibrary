@@ -7,7 +7,7 @@
 
 #if canImport(Vapor)
 import Vapor
-#elseif canImport(CryptoSwift) || canImport(PostgresClientKit)
+#elseif canImport(CryptoSwift) && canImport(PostgresClientKit)
 import PostgresClientKit
 import CryptoSwift
 #else

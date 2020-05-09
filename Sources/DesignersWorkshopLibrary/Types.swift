@@ -1,12 +1,8 @@
 import Foundation
 
-#if canImport(Vapor)
-import Vapor
-#else
-import PostgresClientKit
-#endif
-
 #if canImport(PostgresClientKit)
+import PostgresClientKit
+
 /// This struct represents the user that is current logged in.
 public struct User {
 	public let id: Int
