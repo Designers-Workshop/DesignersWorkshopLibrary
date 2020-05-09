@@ -7,14 +7,14 @@
 
 #if canImport(Vapor)
 import Vapor
-#elseif canImport(CryptoSwift)
+#elseif canImport(CryptoSwift) || canImport(PostgresClientKit)
+import PostgresClientKit
 import CryptoSwift
 #else
 #error("Add either CryptoSwift or Vapor to your Package.swift.")
 #endif
 
 import Foundation
-import PostgresClientKit
 import SwiftyJSON
 
 fileprivate let badChars = CharacterSet.alphanumerics.inverted
@@ -121,6 +121,7 @@ public class Misc {
 		
 	}
 	
+	/*
 	#if canImport(Vapor)
 	/// Converts `User` to `FormUser`.
 	/// - Parameter user: The user to be converted.
@@ -330,6 +331,7 @@ public class Misc {
 		return User(id: codableUser.id, name: codableUser.name, email: codableUser.email, address: codableUser.address, username: codableUser.username, password: codableUser.password, dateTimeCreated: codableUser.dateTimeCreated.postgresTimestampWithTimeZone, zone: codableUser.zone, isAdmin: codableUser.isAdmin, profilePic: PostgresByteA(data: codableUser.profilePic ?? profilePic), forgotPasswordID: codableUser.forgotPasswordID)
 	}
 	#endif
+	*/
 	
 	public func convertTimezone(timezone: String, date: Date) -> Date {
 		let fmt = DateFormatter()

@@ -1,6 +1,12 @@
 import Foundation
-import PostgresClientKit
 
+#if canImport(Vapor)
+import Vapor
+#else
+import PostgresClientKit
+#endif
+
+#if canImport(PostgresClientKit)
 /// This struct represents the user that is current logged in.
 public struct User {
 	public let id: Int
@@ -146,3 +152,4 @@ public struct Sketch: Hashable {
 		self.zone = zone
 	}
 }
+#endif
