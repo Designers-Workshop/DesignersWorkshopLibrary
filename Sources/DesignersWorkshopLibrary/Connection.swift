@@ -6,6 +6,8 @@
 //
 
 import Foundation
+
+#if canImport(PostgresClientKit)
 import PostgresClientKit
 
 /// Set the parameters for connecting to a database. In this case, the parameters are stored in environment variables.
@@ -64,3 +66,4 @@ public func createConnection(forConfig config: inout PostgresClientKit.Connectio
 }
 
 public let connect = createConnection(forConfig:)
+#endif
