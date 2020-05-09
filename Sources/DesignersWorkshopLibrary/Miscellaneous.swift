@@ -106,7 +106,7 @@ public class Misc {
 		
 		final = Insecure.MD5.hash(data: password.data(using: .utf8)!).hexEncodedString()
 		
-		return final
+		
 		
 		// ...while CryptoSwift is used on Designers Workshop's iOS app.
 		#elseif canImport(CryptoSwift) && canImport(PostgresClientKit)
@@ -118,8 +118,10 @@ public class Misc {
 		
 		final = password.md5()
 		
-		return final
+		
 		#endif
+		
+		return final
 		
 	}
 	
