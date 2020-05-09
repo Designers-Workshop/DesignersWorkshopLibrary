@@ -11,7 +11,7 @@ import Vapor
 import PostgresClientKit
 import CryptoSwift
 #else
-#error("Add either CryptoSwift or Vapor to your Package.swift.")
+//#error("Add either CryptoSwift or Vapor to your Package.swift.")
 #endif
 
 import Foundation
